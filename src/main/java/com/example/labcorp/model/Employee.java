@@ -1,4 +1,4 @@
-package com.example.labcorp.entity;
+package com.example.labcorp.model;
 
 public abstract class Employee {
     private float vacationDays;

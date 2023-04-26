@@ -1,6 +1,4 @@
-package com.example.labcorp.entity;
-
-import com.example.labcorp.entity.SalariedEmployee;
+package com.example.labcorp.model;
 
 public class Manager extends SalariedEmployee {
     public Manager() {

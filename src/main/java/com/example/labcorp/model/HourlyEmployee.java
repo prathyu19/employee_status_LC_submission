@@ -1,4 +1,4 @@
-package com.example.labcorp.entity;
+package com.example.labcorp.model;
 
 public class HourlyEmployee extends Employee {
     public HourlyEmployee() {

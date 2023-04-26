@@ -1,34 +1,41 @@
-package com.example.labcorp;
+package com.example.labcorp.controller;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import com.example.labcorp.model.Employee;
+import com.example.labcorp.model.HourlyEmployee;
+import com.example.labcorp.model.SalariedEmployee;
+import com.example.labcorp.model.Manager;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+import java.util.ArrayList;
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/employees")
 public class EmployeeController {
-    private EmployeeDatabase database = new EmployeeDatabase();
+    private final List<Employee> employees;
 
-    @GetMapping("/")
-    public String index(Model model) {
-        model.addAttribute("employees", database.getEmployees());
-        return "index";
+    public EmployeeController() {
+        employees = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            employees.add(new HourlyEmployee());
+            employees.add(new SalariedEmployee());
+            employees.add(new Manager());
+        }
     }
 
-    @PostMapping("/work/{index}")
-    public String work(@PathVariable int index, @RequestParam("daysWorked") int daysWorked) {
-        Employee employee = database.getEmployees().get(index);
-        employee.work(daysWorked);
-        return "redirect:/";
+    @GetMapping("")
+    public List<Employee> getEmployees() {
+        return employees;
     }
 
-    @PostMapping("/vacation/{index}")
-    public String vacation(@PathVariable int index, @RequestParam("daysOff") float daysOff) {
-        Employee employee = database.getEmployees().get(index);
-        employee.takeVacation(daysOff);
-        return "redirect:/";
+    @PutMapping("/{id}/work/{days}")
+    public void work(@PathVariable int id, @PathVariable int days) {
+        employees.get(id).work(days);
+    }
+
+    @PutMapping("/{id}/vacation/{days}")
+    public void takeVacation(@PathVariable int id, @PathVariable float days) {
+        employees.get(id).takeVacation(days);
     }
 }
 

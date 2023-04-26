@@ -1,0 +1,17 @@
+h3 {
+  margin-top: 0;
+}
+
+label {
+  display: inline-block;
+  width: 120px;
+}
+
+button {
+  margin-left: 10px;
+}
+
+hr {
+  border-top: 1px solid #ccc;
+  margin-top: 20px;
+}
