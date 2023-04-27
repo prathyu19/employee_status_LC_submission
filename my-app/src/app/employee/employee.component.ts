@@ -9,13 +9,13 @@ import { EmployeeService } from './employee.service';
 })
 export class EmployeeComponent implements OnInit {
   employees: Employee[] = [];
-  daysTaken: any;
-  daysWorked: any;
+  // daysTaken: any;
+  // daysWorked: any;
 
   constructor(private employeeService: EmployeeService) { }
 
   ngOnInit(): void {
-    this.getEmployees();
+    // this.getEmployees();
   }
 
   getEmployees(): void {
